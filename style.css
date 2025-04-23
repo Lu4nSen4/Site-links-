@@ -1,0 +1,328 @@
+:root {
+    --primary-color: #1a73e8;
+    --primary-hover: #1557b0;
+    --background: #f0f2f5;
+    --text-primary: #1a1a1a;
+    --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --transition-fast: all 0.2s ease-in-out;
+    --destructive-color: #dc3545;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --notification-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* ============== ESTILOS BASE ============== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--background);
+    padding: 2rem;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ============== COMPONENTES ============== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ----- Cards de Curso ----- */
+.course-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.course-title {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.course-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.course-link a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* ----- Sistema de Votos ----- */
+.voting-section {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.vote-btn {
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #e4e6e9;
+    border-radius: 25px;
+    background: #f8f9fa;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.vote-btn:hover {
+    background: #e4e6e9;
+    transform: scale(1.05);
+}
+
+.vote-btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ============== SISTEMA DE COMENTÁRIOS (CORREÇÕES PRINCIPAIS) ============== */
+.comments-section {
+    margin-top: 2rem;
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+}
+
+.comments-list {
+         max-height: 0;
+         overflow: hidden;
+         transition: max-height 0.3s ease-in-out;
+     }
+     
+     .comments-list:not(.collapsed) {
+         max-height: 400px;
+     }
+
+.comment {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ============== DEMAS ESTILOS ============== */
+.comments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.toggle-comments {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.toggle-comments:hover {
+    color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.comment-author {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.comment-text {
+    word-break: break-word;
+    margin-bottom: 0.5rem;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.reply-button, .delete-button {
+    background: none;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-size: 0.9rem;
+}
+
+.reply-button {
+    color: var(--primary-color);
+}
+
+.delete-button {
+    color: var(--destructive-color);
+}
+
+.reply-button:hover, .delete-button:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+/* ----- Formulários ----- */
+.comment-input-container {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.comment-author-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+    min-height: 100px;
+    transition: var(--transition-fast);
+}
+
+.comment-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+}
+
+.comment-btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    justify-self: start;
+}
+
+.comment-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+/* ----- Notificações ----- */
+.notification {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    color: white;
+    z-index: 1000;
+    box-shadow: var(--notification-shadow);
+    animation: slideIn 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.notification.error {
+    background: var(--destructive-color);
+}
+
+.notification.success {
+    background: var(--success-color);
+}
+
+.notification.warning {
+    background: var(--warning-color);
+    color: #000;
+}
+
+/* ============== ANIMAÇÕES ============== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* ============== RESPONSIVIDADE ============== */
+@media (max-width: 768px) {
+    body {
+        padding: 1.5rem;
+    }
+
+    .course-card {
+        padding: 1rem;
+    }
+
+    .comments-list {
+        max-height: 300px;
+    }
+
+    .comment-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+
+    .course-title {
+        font-size: 1.5rem;
+    }
+
+    .voting-section {
+        flex-direction: column;
+    }
+
+    .comment {
+        padding: 0.8rem;
+    }
+
+    .notification {
+        width: calc(100% - 2rem);
+        right: 1rem;
+        left: 1rem;
+    }
+}
